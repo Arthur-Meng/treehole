@@ -38,10 +38,10 @@ public class VivController {
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public String saveMsg(@RequestParam String msg) {
+	public String saveMsg(@RequestBody Map msg) {
 		log.info(msg);
 		// 保存到数据库
-		Msg vivMsg = new Msg(OtherUtil.getDate(), msg);
+		Msg vivMsg = new Msg(OtherUtil.getDate(), msg.get("message").toString());
 		msgMapper.saveMsg(vivMsg);
 		// 发送邮件
 		try {
@@ -57,12 +57,39 @@ public class VivController {
 	}
 
 	/**
+	 * 获取快乐
+	 */
+	@RequestMapping(value = "/happy", method = RequestMethod.GET)
+	@ResponseBody
+	public String getHappy() {
+		return "success";
+	}
+
+	/**
+	 * 获取忧虑
+	 */
+	@RequestMapping(value = "/worry", method = RequestMethod.GET)
+	@ResponseBody
+	public String getWorry() {
+		return "success";
+	}
+
+	/**
 	 * 获取难过
 	 */
-	@RequestMapping(value = "/sad", method = RequestMethod.POST)
+	@RequestMapping(value = "/sad", method = RequestMethod.GET)
 	@ResponseBody
 	public String getSad() {
 		return "success";
 	}
-	
+
+	/**
+	 * 获取生气
+	 */
+	@RequestMapping(value = "/angry", method = RequestMethod.GET)
+	@ResponseBody
+	public String getAngry() {
+		return "success";
+	}
+
 }

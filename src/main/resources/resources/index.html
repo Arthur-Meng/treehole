@@ -30,6 +30,77 @@
 
 	<script src="js/vendor/modernizr.js"></script>
 
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//按钮portout单击时执行
+			$("#portout").click(function () {
+				var msg = { "message": $("#message").val() }
+				$.ajax({
+					type: "POST",
+					async: false,
+					url: "http://localhost:8080/viv/save",
+					data: JSON.stringify(msg),
+					contentType: "application/json",
+					success: function (data) {
+						//清空表单
+						$("#message").html("");
+						//显示Ajax返回结果
+						alert(data);
+					}
+				});
+				return false;
+			});
+			//按钮happy单击时执行
+			$("#happybutton").click(function () {
+				//取Ajax返回结果
+				var message = $.ajax({
+					type: "GET",
+					url: "http://localhost:8080/viv/happy",
+					success: function (data) {
+						//显示Ajax返回结果
+						$("#myHappy").html(data);
+					}
+				});
+			});
+			//按钮worry单击时执行
+			$("#worrybutton").click(function () {
+				//取Ajax返回结果
+				var message = $.ajax({
+					type: "GET",
+					url: "http://localhost:8080/viv/worry",
+					success: function (data) {
+						//显示Ajax返回结果
+						$("#myWorry").html(data);
+					}
+				});
+			});
+			//按钮sad单击时执行
+			$("#sadbutton").click(function () {
+				//取Ajax返回结果
+				var message = $.ajax({
+					type: "GET",
+					url: "http://localhost:8080/viv/sad",
+					success: function (data) {
+						//显示Ajax返回结果
+						$("#mySad").html(data);
+					}
+				});
+			});
+			//按钮angry单击时执行
+			$("#angrybutton").click(function () {
+				//取Ajax返回结果
+				var message = $.ajax({
+					type: "GET",
+					url: "http://localhost:8080/viv/angry",
+					success: function (data) {
+						//显示Ajax返回结果
+						$("#myAngry").html(data);
+					}
+				});
+			});
+		});
+	</script>
 </head>
 
 <body id="home" data-spy="scroll" data-offset="50" data-target=".navbar-default">
@@ -154,20 +225,17 @@
 			</div>
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<article class="form-detached">
-						<form action="http://localhost:8080/viv/sad" id="contact-form">
-							<div class="alert alert-success hidden" id="contact-alert-success">
-								PORT OUT TO TREEHOLE<strong>Success!</strong>
-							</div>
-							<div class="alert alert-danger hidden" id="contact-alert-error">
-								<strong>Error!</strong> Something went wrong sending your message.
-							</div>
-							<div class="form-group">
+					<article class="msg-form-detached">
+						<form id="msg-form">
+							<div class="msg-form-group">
 								<label class="sr-only" for="message"></label>
 								<textarea placeholder="Enter your message..." data-msg-required="Please enter your message." rows="6" class="form-control"
 								 name="message" id="message"></textarea>
 							</div>
-							<input type="submit" value="PORT OUT TO TREEHOLE" class="btn btn-warning btn-block" data-loading-text="Loading...">
+							<br>
+							<button type="text" id="portout" value="PORT OUT TO TREEHOLE" class="btn btn-warning btn-block"
+							 data-loading-text="Loading...">PORT OUT TO TREEHOLE</button>
+							<br>
 						</form>
 					</article>
 				</div>
@@ -201,16 +269,14 @@
 						<h4 class="section-title font-lg">HI HONEY,CLICK TO BE HAPPY MORE</h4>
 					</header>
 				</div>
+				<header class="section-header">
+					<h4 class="section-title font-lg" id="myHappy">CLICK TO GET MESSAGE</h4>
+				</header>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<a href="portfolio.html" class="btn btn-warning btn-lg load-more" role="button">HAPPY MORE</a>
+					<button id="happybutton" class="btn btn-warning btn-lg load-more" type="button">HAPPY MORE</button>
 				</div>
-			</div>
-			<div class="col-md-12">
-					<header class="section-header">
-						<h4 class="section-title font-normal font-lg">CLICK TO SHOW MESSGAE</h4>
-					</header>
 			</div>
 		</div>
 	</section>
@@ -256,16 +322,14 @@
 						<h4 class="section-title font-lg">OH BABY,DONT BE WORRY</h4>
 					</header>
 				</div>
+				<header class="section-header">
+					<h4 class="section-title font-lg" id="myWorry">CLICK TO GET MESSAGE</h4>
+				</header>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<a href="portfolio.html" class="btn btn-warning btn-lg load-more" role="button">BE RELEASE</a>
+					<button id="worrybutton" class="btn btn-warning btn-lg load-more" type="button">BE RELEASE</button>
 				</div>
-			</div>
-			<div class="col-md-12">
-					<header class="section-header">
-						<h4 class="section-title font-normal font-lg">CLICK TO SHOW MESSGAE</h4>
-					</header>
 			</div>
 		</div>
 	</section>
@@ -310,32 +374,30 @@
 						<h4 class="section-title font-lg">THE WAY OF TRUE LOVE IS NOT SMOOTH</h4>
 					</header>
 				</div>
+				<header class="section-header">
+					<h4 class="section-title font-lg" id="mySad">CLICK TO GET MESSAGE</h4>
+				</header>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<a href="portfolio.html" class="btn btn-warning btn-lg load-more" role="button">CHEER UP</a>
+					<button id="sadbutton" class="btn btn-warning btn-lg load-more" type="button">CHEER UP</button>
 				</div>
-			</div>
-			<div class="col-md-12">
-					<header class="section-header">
-						<h4 class="section-title font-normal font-lg">CLICK TO SHOW MESSGAE</h4>
-					</header>
 			</div>
 		</div>
 	</section>
 
 	<section class="call-to">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<article class="action">
-							<h5>IF MY BABY BETTWEN SAD AND ANGRY?</h5>
-							<a href="#" class="btn btn-border" role="button">CALL ME PLEASE</a>
-						</article>
-					</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<article class="action">
+						<h5>IF MY BABY BETTWEN SAD AND ANGRY?</h5>
+						<a href="#" class="btn btn-border" role="button">CALL ME PLEASE</a>
+					</article>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
 	<!-- 生气 -->
 	<section id="angry" class="blog">
@@ -343,19 +405,17 @@
 			<div class="row">
 				<div class="col-md-12">
 					<header class="section-header">
-						<h4 class="section-title font-lg">YOUR ANGER IS ALL MY FAULT</h4>
+						<h4 class="section-title font-lg">SORRY,YOUR ANGRY IS ALL MY FAULR</h4>
 					</header>
 				</div>
+				<header class="section-header">
+					<h4 class="section-title font-lg" id="myAngry">CLICK TO GET MESSAGE</h4>
+				</header>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<a href="portfolio.html" class="btn btn-warning btn-lg load-more" role="button">FORGIVE ME</a>
+					<button id="angrybutton" class="btn btn-warning btn-lg load-more" type="button">FORGIVE ME</button>
 				</div>
-			</div>
-			<div class="col-md-12">
-					<header class="section-header">
-						<h4 class="section-title font-normal font-lg">CLICK TO SHOW MESSGAE</h4>
-					</header>
 			</div>
 		</div>
 	</section>
@@ -371,7 +431,6 @@
 			</div>
 		</div>
 	</footer>
-
 
 	<script src="js/jquery.js"></script>
 	<script src="js/vendor/fastclick.js"></script>
