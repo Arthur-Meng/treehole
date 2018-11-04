@@ -11,7 +11,35 @@
 	<title>Home</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-
+	<link href="css/style2.css" rel="stylesheet" />
+	<style>
+		.alert {
+			width: 90%;
+			text-align: center;
+			color: #fff;
+			margin: 10px auto;
+			border-radius: 5px;
+			line-height: 30px;
+			cursor: pointer;
+			background: #4ab819;
+		}
+		
+		.confirm {
+			background: #196fb8;
+		}
+		
+		.open {
+			background: #f88408;
+		}
+		
+		.toast {
+			background: #f80851;
+		}
+		
+		.later {
+			background: #a9a9a9;
+		}
+	</style>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	<!-- Main CSS -->
@@ -31,6 +59,7 @@
 	<script src="js/vendor/modernizr.js"></script>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
+	<script src="js/ui.js"></script>
 	<script type="text/javascript">
 		$(function () {
 			//按钮portout单击时执行
@@ -46,7 +75,7 @@
 						//清空表单
 						$("#message").html("");
 						//显示Ajax返回结果
-						alert(data);
+						mizhu.alert('', '保存成功');
 					}
 				});
 				return false;

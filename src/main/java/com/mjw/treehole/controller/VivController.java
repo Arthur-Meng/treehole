@@ -16,7 +16,9 @@ import com.mjw.treehole.util.OtherUtil;
 import lombok.extern.log4j.Log4j;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.mail.MessagingException;
 
@@ -30,6 +32,8 @@ import javax.mail.MessagingException;
 @Controller
 @Log4j
 public class VivController {
+
+	public static Random random = new Random();
 	@Autowired
 	MsgMapper msgMapper;
 
@@ -45,7 +49,7 @@ public class VivController {
 		msgMapper.saveMsg(vivMsg);
 		// 发送邮件
 		try {
-			EmailUtils.sendHtmlMail("903019946@qq.com", "树洞", " Viv说：" + msg);
+			EmailUtils.sendHtmlMail("903019946@qq.com", "树洞", " Viv说：" + vivMsg.getMsg());
 		} catch (UnsupportedEncodingException e) {
 			log.error("发送邮件编码错误", e);
 			return "fail";
@@ -62,7 +66,8 @@ public class VivController {
 	@RequestMapping(value = "/happy", method = RequestMethod.GET)
 	@ResponseBody
 	public String getHappy() {
-		return "success";
+		List<String> meansList = msgMapper.getExpress("happy");
+		return meansList.get(random.nextInt(meansList.size()));
 	}
 
 	/**
@@ -71,7 +76,8 @@ public class VivController {
 	@RequestMapping(value = "/worry", method = RequestMethod.GET)
 	@ResponseBody
 	public String getWorry() {
-		return "success";
+		List<String> meansList = msgMapper.getExpress("worry");
+		return meansList.get(random.nextInt(meansList.size()));
 	}
 
 	/**
@@ -80,7 +86,8 @@ public class VivController {
 	@RequestMapping(value = "/sad", method = RequestMethod.GET)
 	@ResponseBody
 	public String getSad() {
-		return "success";
+		List<String> meansList = msgMapper.getExpress("sad");
+		return meansList.get(random.nextInt(meansList.size()));
 	}
 
 	/**
@@ -89,7 +96,8 @@ public class VivController {
 	@RequestMapping(value = "/angry", method = RequestMethod.GET)
 	@ResponseBody
 	public String getAngry() {
-		return "success";
+		List<String> meansList = msgMapper.getExpress("angry");
+		return meansList.get(random.nextInt(meansList.size()));
 	}
 
 }
