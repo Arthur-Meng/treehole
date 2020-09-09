@@ -10,10 +10,10 @@ import com.mjw.treehole.bean.Msg;
 
 public interface MsgMapper {
 
-	@Insert("insert into MSG (date,msg)values(#{msg.date},#{msg.msg})")
-	public void saveMsg(@Param("msg") Msg msg);
+    @Insert("insert into msg (date,msg) values (#{msg.date}, #{msg.msg})")
+    void saveMsg(@Param("msg") Msg msg);
 
-	@Select("select mean from express where type=#{type}")
-	public List<String> getExpress(@Param("type") String type);
+    @Select("select content from express where type=#{type}")
+    List<String> getExpress(@Param("type") String type);
 
 }

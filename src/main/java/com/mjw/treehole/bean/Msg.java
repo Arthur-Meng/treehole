@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Msg {
+
 	String date;
 	String msg;
 

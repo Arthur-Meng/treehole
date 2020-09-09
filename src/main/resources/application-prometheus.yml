@@ -1,0 +1,6 @@
+#prometheus监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,metrics,prometheus
